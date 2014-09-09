@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tuner</title>
+    <script src="bower_components/riotjs/riot.min.js"></script>
+    <script src="js/lute.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/sound-control.js"></script>
+    <script src="js/string-player.js"></script>
+  </head>
+  <body>
+    <div>
+      Volume: <input id="volume" type="range" min="0" max="1" step=".01">
+      <input id="mute" type="button" value="Mute">
+    </div>
+    <div id="strings">
+      <button data-index="-17" data-pitch="E2">E</button>
+      <button data-index="-12" data-pitch="A2">A</button>
+      <button data-index="-7" data-pitch="D3">D</button>
+      <button data-index="-2" data-pitch="G3">G</button>
+      <button data-index="2" data-pitch="B3">B</button>
+      <button data-index="7" data-pitch="E4">E</button>
+    </div>
+  </body>
+</html>

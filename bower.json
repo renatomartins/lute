@@ -1,0 +1,23 @@
+{
+  "name": "lute",
+  "version": "0.0.0",
+  "authors": [
+    "Renato S. Martins <smartins.renato@gmail.com>"
+  ],
+  "description": "tuner for string instruments",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "tuner",
+    "guitar",
+    "bass",
+    "strings",
+    "pitch"
+  ],
+  "license": "Public Domain",
+  "private": true,
+  "devDependencies": {
+    "riotjs": "~1.0.1"
+  }
+}
