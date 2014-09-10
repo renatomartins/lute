@@ -1,0 +1,34 @@
+{
+  "name": "lute",
+  "version": "0.0.0",
+  "description": "tuner for string instruments",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-coffeelint": "0.0.13",
+    "grunt-contrib-coffee": "~0.11.1",
+    "amdclean": "~2.2.5",
+    "grunt-contrib-requirejs": "~0.4.4",
+    "grunt-contrib-clean": "~0.6.0"
+  },
+  "scripts": {
+    "build": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/renatomartins/lute.git"
+  },
+  "keywords": [
+    "tuner",
+    "guitar",
+    "bass",
+    "strings",
+    "pitch"
+  ],
+  "author": "Renato S. Martins <smartins.renato@gmail.com>",
+  "license": "Public Domain",
+  "bugs": {
+    "url": "https://github.com/renatomartins/lute/issues"
+  },
+  "homepage": "https://github.com/renatomartins/lute"
+}

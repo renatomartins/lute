@@ -3,11 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Tuner</title>
-    <script src="bower_components/riotjs/riot.min.js"></script>
-    <script src="js/lute.js"></script>
-    <script src="js/audio.js"></script>
-    <script src="js/sound-control.js"></script>
-    <script src="js/string-player.js"></script>
+    <script src="dist/lute.js"></script>
   </head>
   <body>
     <div>
@@ -22,5 +18,10 @@
       <button data-index="2" data-pitch="B3">B</button>
       <button data-index="7" data-pitch="E4">E</button>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        Lute.run();
+      });
+    </script>
   </body>
 </html>
