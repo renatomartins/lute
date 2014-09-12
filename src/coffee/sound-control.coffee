@@ -32,7 +32,7 @@ define [], ->
       else if @audio.isMuted
         @audio.unmute(volume)
       else
-        @audio.setGain(volume)
+        @audio.setVolume(volume)
 
 
     onMuteClick: =>

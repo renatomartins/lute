@@ -1,3 +1,5 @@
+Lute = null
+
 define [
   'audio'
   'sound-control'
@@ -5,10 +7,14 @@ define [
 ], (Audio, SoundControl, StringPlayer) ->
 
 
-  class window.Lute
+  class Lute
 
 
     @run: ->
       audio = new Audio()
       new SoundControl(audio)
       new StringPlayer(audio)
+
+
+document.addEventListener 'DOMContentLoaded', ->
+  Lute.run()

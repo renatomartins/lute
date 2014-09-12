@@ -9,7 +9,10 @@
     "grunt-contrib-coffee": "~0.11.1",
     "amdclean": "~2.2.5",
     "grunt-contrib-requirejs": "~0.4.4",
-    "grunt-contrib-clean": "~0.6.0"
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-template-jasmine-requirejs": "~0.2.0",
+    "grunt-contrib-jasmine": "~0.7.0",
+    "grunt-contrib-htmlmin": "~0.3.0"
   },
   "scripts": {
     "build": "grunt"

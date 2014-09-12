@@ -34,6 +34,7 @@ define [
 
 
     onStringClick: (e) =>
+      return unless e.target.tagName is 'BUTTON'
       frequencyIndex = e.target.dataset.index
       frequency = Audio.getFrequency(frequencyIndex)
       @audio.play(frequency)

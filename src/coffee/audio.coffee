@@ -6,11 +6,6 @@ define [
   class Audio
 
 
-    AudioContext = (window.AudioContext or window.webkitAudioContext)
-    unless AudioContext?
-      throw new Error('Web Audio API is not supported in this browser')
-
-
     Audio.prototype = riot.observable(Audio.prototype)
 
 
@@ -18,11 +13,14 @@ define [
       args = if args? then args else {}
       @isMuted = if args.muted? then args.muted else false
       @defaultVolume = if args.volume? then args.volume else 0.5
+      @volume = @defaultVolume
 
-      @configure()
+      @configureAudio()
 
 
-    configure: ->
+    configureAudio: ->
+      AudioContext = (window.AudioContext or window.webkitAudioContext)
+
       @context = new AudioContext()
       # the merger node is there so that burst sounds don't stop each other
       @mergerNode = @context.createChannelMerger()
@@ -31,7 +29,7 @@ define [
       @mergerNode.connect(@gainNode)
       @gainNode.connect(@context.destination)
 
-      @setGain(@defaultVolume)
+      @setVolume(@defaultVolume)
 
 
     # Play a given frequency by creating a new oscillator.
@@ -52,21 +50,22 @@ define [
       # should the oscillator and gain nodes be destroyed?
 
 
-    setGain: (volume) ->
-      @gainNode.gain.value = parseFloat(volume, 10)
-      @trigger('gain', volume)
+    setVolume: (volume) ->
+      @volume = parseFloat(volume, 10)
+      @gainNode.gain.value = @volume
+      @trigger('gain', @volume)
 
 
     mute: ->
       @isMuted = true
-      @setGain(0)
+      @setVolume(0)
       @trigger('muted')
 
 
     unmute: (volume) ->
       volume = if volume? then volume else @defaultVolume
       @isMuted = false
-      @setGain(volume)
+      @setVolume(volume)
       @trigger('unmuted', volume)
 
 
