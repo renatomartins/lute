@@ -1,6 +1,8 @@
 define [
+  'jquery'
   'audio'
-], (Audio) ->
+  'template/string-player'
+], ($, Audio, template) ->
 
 
   class StringPlayer
@@ -25,16 +27,23 @@ define [
 
     constructor: ->
       @audio = Audio.getInstance()
-      @stringsDiv = document.getElementById('strings')
-      @domListeners()
+      @$el = $('<div>')
+
+      @render()
 
 
-    domListeners: ->
-      @stringsDiv.addEventListener('click', @onStringClick)
+    render: ->
+      @$el.html(template())
+      $('body').append(@$el)
+
+      @configDom()
 
 
-    onStringClick: (e) =>
-      return unless e.target.tagName is 'BUTTON'
+    configDom: ->
+      @$el.on('click', 'button', @onButtonClick)
+
+
+    onButtonClick: (e) =>
       frequencyIndex = e.target.dataset.index
       frequency = Audio.getFrequency(frequencyIndex)
       @audio.play(frequency)

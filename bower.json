@@ -18,6 +18,7 @@
   "license": "Public Domain",
   "private": true,
   "devDependencies": {
-    "riotjs": "~1.0.1"
+    "riotjs": "~1.0.1",
+    "jquery": "~2.1.1"
   }
 }

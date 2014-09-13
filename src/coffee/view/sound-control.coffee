@@ -1,6 +1,8 @@
 define [
+  'jquery'
   'audio'
-], (Audio) ->
+  'template/sound-control'
+], ($, Audio, template) ->
 
 
   class SoundControl
@@ -8,27 +10,32 @@ define [
 
     constructor: ->
       @audio = Audio.getInstance()
-      
-      @volumeRange = document.getElementById('volume')
-      @muteButton = document.getElementById('mute')
+      @$el = $('<div>')
 
-      @volumeRange.value = audio.defaultVolume
-      @domListeners()
-      @audioListeners()
-
-
-    domListeners: ->
-      @volumeRange.addEventListener('change', @onVolumeChange)
-      @muteButton.addEventListener('click', @onMuteClick)
-
-
-    audioListeners: ->
       @audio.on('muted', @onAudioMuted)
       @audio.on('unmuted', @onAudioUnmuted)
 
+      @render()
+
+
+    render: ->
+      @$el.html(template())
+      $('body').append(@$el)
+
+      @$volume = @$el.find('#volume')
+      @$mute = @$el.find('#mute')
+
+      @configDom()
+
+
+    configDom: ->
+      @$volume.val(@audio.defaultVolume)
+      @$volume.on('change', @onVolumeChange)
+      @$mute.on('click', @onMuteClick)
+
 
     onVolumeChange: =>
-      volume = parseFloat(@volumeRange.value, 10)
+      volume = parseFloat(@$volume.val(), 10)
       if volume is 0
         @audio.mute()
       else if @audio.isMuted
@@ -45,10 +52,10 @@ define [
 
 
     onAudioMuted: =>
-      @muteButton.value = 'Unmute'
-      @volumeRange.value = 0
+      @$mute.val('Unmute')
+      @$volume.val(0)
 
 
     onAudioUnmuted: (volume) =>
-      @muteButton.value = 'Mute'
-      @volumeRange.value = volume
+      @$mute.val('Mute')
+      @$volume.val(volume)

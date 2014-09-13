@@ -1,6 +1,6 @@
 define [
   'audio'
-  'stubs/audio-context'
+  'stub/audio-context'
 ], (Audio) ->
 
 

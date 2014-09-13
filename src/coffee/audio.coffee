@@ -1,5 +1,5 @@
 define [
-  'riotjs'
+  'riot'
 ], (riot) ->
 
 

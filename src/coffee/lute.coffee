@@ -3,6 +3,7 @@ Lute = null
 define [
   'view/sound-control'
   'view/string-player'
+  'utils'
 ], (SoundControl, StringPlayer) ->
 
 

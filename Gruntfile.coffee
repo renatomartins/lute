@@ -1,16 +1,20 @@
 module.exports = (grunt) ->
 
 
+  # path relative to requirejs baseUrl
+  bower = '../../bower_components'
+
   requirejsConfig =
-    baseUrl: 'build/src/js'
+    baseUrl: 'build/src'
     # optimize: 'none'
     include: ['lute']
     out: 'dist/lute.js'
     paths:
-      stubs: '../../specs/js/stubs'
-      riotjs: '../../../bower_components/riotjs/riot'
+      stub: '../spec/stub'
+      riot: "#{bower}/riotjs/riot"
+      jquery: "#{bower}/jquery/dist/jquery"
     shim:
-      riotjs:
+      riot:
         exports: 'riot'
     onModuleBundleComplete: (data) ->
       fs = require('fs')
@@ -22,7 +26,7 @@ module.exports = (grunt) ->
 
   grunt.initConfig
 
-    pkg: grunt.file.readJSON 'package.json'
+    pkg: grunt.file.readJSON('package.json')
 
     clean:
       dist: ['dist']
@@ -30,7 +34,7 @@ module.exports = (grunt) ->
 
     coffeelint:
       src: 'src/coffee/**/*.coffee'
-      specs: 'specs/**/*.coffee'
+      spec: 'spec/**/*.coffee'
 
     coffee:
       options:
@@ -39,19 +43,32 @@ module.exports = (grunt) ->
         expand: true
         cwd: 'src/coffee'
         src: ['**/*.coffee']
-        dest: 'build/src/js'
+        dest: 'build/src'
         ext: '.js'
-      specs:
+      spec:
         expand: true
-        cwd: 'specs'
+        cwd: 'spec'
         src: ['**/*.coffee']
-        dest: 'build/specs/js'
+        dest: 'build/spec'
+        ext: '.js'
+
+    jst:
+      options:
+        namespace: false
+        amd: true
+        templateSettings:
+          interpolate: /\{\{(.+?)\}\}/g
+      compile:
+        expand: true
+        cwd: 'src/html/template'
+        src: ['**/*.mustache']
+        dest: 'build/src/template'
         ext: '.js'
 
     jasmine:
       test:
         options:
-          specs: ['build/specs/js/**/*.js']
+          specs: ['build/spec/**/*.js']
           template: require('grunt-template-jasmine-requirejs')
           templateOptions:
             requireConfig: requirejsConfig
@@ -60,12 +77,9 @@ module.exports = (grunt) ->
       dist:
         options: requirejsConfig
 
-    htmlmin:
-      dist:
-        options:
-          removeComments: true
-          collapseWhitespace: true
-          removeAttributeQuotes: true
+
+    copy:
+      html:
         files:
           'dist/index.html': 'src/html/index.html'
 
@@ -73,16 +87,18 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-coffeelint')
   grunt.loadNpmTasks('grunt-contrib-coffee')
+  grunt.loadNpmTasks('grunt-contrib-jst')
   grunt.loadNpmTasks('grunt-contrib-jasmine')
   grunt.loadNpmTasks('grunt-contrib-requirejs')
-  grunt.loadNpmTasks('grunt-contrib-htmlmin')
+  grunt.loadNpmTasks('grunt-contrib-copy')
 
   grunt.registerTask('default', [
     'coffeelint'
     'clean:build'
     'coffee'
+    'jst'
     'jasmine'
     'clean:dist'
     'requirejs'
-    'htmlmin'
+    'copy:html'
   ])
