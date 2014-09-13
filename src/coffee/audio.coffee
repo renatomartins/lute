@@ -9,19 +9,22 @@ define [
     Audio.prototype = riot.observable(Audio.prototype)
 
 
-    constructor: (args) ->
-      args = if args? then args else {}
-      @isMuted = if args.muted? then args.muted else false
-      @defaultVolume = if args.volume? then args.volume else 0.5
-      @volume = @defaultVolume
-
-      @configureAudio()
+    @instance: null
 
 
-    configureAudio: ->
+    @getInstance: ->
+      unless @instance?
+        @instance = new Audio()
+      @instance
+
+
+    constructor: ->
+      @isMuted = false
+      @volume = @defaultVolume = 0.5
+
       AudioContext = (window.AudioContext or window.webkitAudioContext)
-
       @context = new AudioContext()
+
       # the merger node is there so that burst sounds don't stop each other
       @mergerNode = @context.createChannelMerger()
       @gainNode = @context.createGain()

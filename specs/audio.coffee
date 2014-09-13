@@ -8,17 +8,16 @@ define [
 
 
     beforeEach ->
-      @audio = new Audio()
+      Audio.instance = null
+      @audio = Audio.getInstance()
 
 
-    it 'is configurable', ->
-      expect(@audio.isMuted).toBe(false)
-      expect(@audio.defaultVolume).toBe(0.5)
-      audio = new Audio
-        muted: true
-        volume: 0.1
-      expect(audio.isMuted).toBe(true)
-      expect(audio.defaultVolume).toBe(0.1)
+    it 'generates a singleton', ->
+      Audio.instance = null
+      audio = Audio.getInstance()
+      expect(audio instanceof Audio).toBe(true)
+      expect(Audio.getInstance()).toBe(audio)
+      expect(@audio).not.toBe(audio)
 
 
     it 'can be muted and unmuted', ->

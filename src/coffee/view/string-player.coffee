@@ -23,8 +23,8 @@ define [
     ]
 
 
-    constructor: (audio) ->
-      @audio = audio
+    constructor: ->
+      @audio = Audio.getInstance()
       @stringsDiv = document.getElementById('strings')
       @domListeners()
 

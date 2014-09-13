@@ -1,19 +1,17 @@
 Lute = null
 
 define [
-  'audio'
-  'sound-control'
-  'string-player'
-], (Audio, SoundControl, StringPlayer) ->
+  'view/sound-control'
+  'view/string-player'
+], (SoundControl, StringPlayer) ->
 
 
   class Lute
 
 
     @run: ->
-      audio = new Audio()
-      new SoundControl(audio)
-      new StringPlayer(audio)
+      new SoundControl()
+      new StringPlayer()
 
 
 document.addEventListener 'DOMContentLoaded', ->

@@ -1,11 +1,13 @@
-define [], ->
+define [
+  'audio'
+], (Audio) ->
 
 
   class SoundControl
 
 
-    constructor: (audio) ->
-      @audio = audio
+    constructor: ->
+      @audio = Audio.getInstance()
       
       @volumeRange = document.getElementById('volume')
       @muteButton = document.getElementById('mute')
