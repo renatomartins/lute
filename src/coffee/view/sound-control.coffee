@@ -1,19 +1,20 @@
 define [
   'jquery'
-  'audio'
+  'lute'
   'template/sound-control'
-], ($, Audio, template) ->
+  'audio'
+], ($, Lute, template) ->
 
 
-  class SoundControl
+  class Lute.View.SoundControl
 
 
     constructor: ->
-      @audio = Audio.getInstance()
+      @audio = Lute.Audio.getInstance()
       @$el = $('<div>')
 
-      @audio.on('muted', @onAudioMuted)
-      @audio.on('unmuted', @onAudioUnmuted)
+      @audio.on('muted', => @onAudioMuted())
+      @audio.on('unmuted', (v) => @onAudioUnmuted(v))
 
       @render()
 
@@ -29,12 +30,12 @@ define [
 
 
     configDom: ->
-      @$volume.val(@audio.defaultVolume)
-      @$volume.on('change', @onVolumeChange)
-      @$mute.on('click', @onMuteClick)
+      @$volume.val(@audio.volume)
+      @$volume.on('change', => @onVolumeChange())
+      @$mute.on('click', => @onMuteClick())
 
 
-    onVolumeChange: =>
+    onVolumeChange: ->
       volume = parseFloat(@$volume.val(), 10)
       if volume is 0
         @audio.mute()
@@ -44,18 +45,18 @@ define [
         @audio.setVolume(volume)
 
 
-    onMuteClick: =>
+    onMuteClick: ->
       if @audio.isMuted
         @audio.unmute()
       else
         @audio.mute()
 
 
-    onAudioMuted: =>
+    onAudioMuted: ->
       @$mute.val('Unmute')
       @$volume.val(0)
 
 
-    onAudioUnmuted: (volume) =>
+    onAudioUnmuted: (volume) ->
       @$mute.val('Mute')
       @$volume.val(volume)

@@ -7,10 +7,10 @@ module.exports = (grunt) ->
   requirejsConfig =
     baseUrl: 'build/src'
     # optimize: 'none'
-    include: ['lute']
-    out: 'dist/lute.js'
+    include: ['app']
+    out: 'dist/app.js'
     paths:
-      stub: '../spec/stub'
+      helper: '../spec/helper'
       riot: "#{bower}/riotjs/riot"
       jquery: "#{bower}/jquery/dist/jquery"
     shim:
@@ -68,7 +68,8 @@ module.exports = (grunt) ->
     jasmine:
       test:
         options:
-          specs: ['build/spec/**/*.js']
+          helpers: 'build/spec/helper/*.js'
+          specs: 'build/spec/*.js'
           template: require('grunt-template-jasmine-requirejs')
           templateOptions:
             requireConfig: requirejsConfig
@@ -88,8 +89,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-coffeelint')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-jst')
-  grunt.loadNpmTasks('grunt-contrib-jasmine')
   grunt.loadNpmTasks('grunt-contrib-requirejs')
+  grunt.loadNpmTasks('grunt-contrib-jasmine')
   grunt.loadNpmTasks('grunt-contrib-copy')
 
   grunt.registerTask('default', [
@@ -97,8 +98,8 @@ module.exports = (grunt) ->
     'clean:build'
     'coffee'
     'jst'
-    'jasmine'
     'clean:dist'
     'requirejs'
+    'jasmine'
     'copy:html'
   ])

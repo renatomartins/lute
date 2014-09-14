@@ -1,11 +1,12 @@
 define [
   'jquery'
-  'audio'
+  'lute'
   'template/string-player'
-], ($, Audio, template) ->
+  'audio'
+], ($, Lute, template) ->
 
 
-  class StringPlayer
+  class Lute.View.StringPlayer
 
 
     # TODO: create a class for pitches
@@ -26,7 +27,7 @@ define [
 
 
     constructor: ->
-      @audio = Audio.getInstance()
+      @audio = Lute.Audio.getInstance()
       @$el = $('<div>')
 
       @render()
@@ -40,10 +41,10 @@ define [
 
 
     configDom: ->
-      @$el.on('click', 'button', @onButtonClick)
+      @$el.on('click', 'button', (e) => @onButtonClick(e))
 
 
-    onButtonClick: (e) =>
+    onButtonClick: (e) ->
       frequencyIndex = e.target.dataset.index
-      frequency = Audio.getFrequency(frequencyIndex)
+      frequency = Lute.Audio.getFrequency(frequencyIndex)
       @audio.play(frequency)

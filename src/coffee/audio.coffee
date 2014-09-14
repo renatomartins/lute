@@ -1,9 +1,10 @@
 define [
+  'lute'
   'riot'
-], (riot) ->
+], (Lute, riot) ->
 
 
-  class Audio
+  class Lute.Audio
 
 
     Audio.prototype = riot.observable(Audio.prototype)
@@ -56,7 +57,7 @@ define [
     setVolume: (volume) ->
       @volume = parseFloat(volume, 10)
       @gainNode.gain.value = @volume
-      @trigger('gain', @volume)
+      @trigger('volume', @volume)
 
 
     mute: ->
