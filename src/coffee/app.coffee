@@ -2,10 +2,10 @@ define [
   'jquery'
   'lute'
   'view/sound-control'
-  'view/string-player'
+  'view/player'
 ], ($, Lute) ->
 
 
   $ ->
     new Lute.View.SoundControl()
-    new Lute.View.StringPlayer()
+    new Lute.View.Player()

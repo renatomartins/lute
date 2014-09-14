@@ -1,12 +1,12 @@
 define [
   'jquery'
   'lute'
-  'template/string-player'
+  'template/player'
   'audio'
 ], ($, Lute, template) ->
 
 
-  class Lute.View.StringPlayer
+  class Lute.View.Player
 
 
     # TODO: create a class for pitches

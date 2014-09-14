@@ -1,15 +1,15 @@
 define [
   'lute'
   'audio'
-  'view/string-player'
+  'view/player'
 ], (Lute) ->
 
 
-  describe 'Lute.View.StringPlayer', ->
+  describe 'Lute.View.Player', ->
 
 
     beforeEach ->
-      @player = new Lute.View.StringPlayer()
+      @player = new Lute.View.Player()
 
 
     it 'plays a sound when a button is clicked', ->
