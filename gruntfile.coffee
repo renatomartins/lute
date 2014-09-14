@@ -69,7 +69,7 @@ module.exports = (grunt) ->
       test:
         options:
           helpers: 'build/spec/helper/*.js'
-          specs: 'build/spec/*.js'
+          specs: 'build/spec/**/*.js'
           template: require('grunt-template-jasmine-requirejs')
           templateOptions:
             requireConfig: requirejsConfig

@@ -1,50 +1,27 @@
 define [
   'jquery'
   'lute'
-  'template/player'
-  'audio'
-], ($, Lute, template) ->
+  'view/tone'
+], ($, Lute) ->
 
 
   class Lute.View.Player
 
 
-    # TODO: create a class for pitches
-    pitches = [
-      ['A']
-      ['A#', 'Bb']
-      ['B']
-      ['C']
-      ['C#', 'Db']
-      ['D']
-      ['D#', 'Eb']
-      ['E']
-      ['F']
-      ['F#', 'Gb']
-      ['G']
-      ['G#', 'Ab']
-    ]
+    pitches = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4']
+
+
+    container: '<div>'
 
 
     constructor: ->
-      @audio = Lute.Audio.getInstance()
-      @$el = $('<div>')
-
+      @$el = $(@container)
       @render()
 
 
     render: ->
-      @$el.html(template())
+      for pitch in pitches
+        view = new Lute.View.Tone(pitch)
+        @$el.append(view.$el)
+      
       $('body').append(@$el)
-
-      @configDom()
-
-
-    configDom: ->
-      @$el.on('click', 'button', (e) => @onButtonClick(e))
-
-
-    onButtonClick: (e) ->
-      frequencyIndex = e.target.dataset.index
-      frequency = Lute.Audio.getFrequency(frequencyIndex)
-      @audio.play(frequency)

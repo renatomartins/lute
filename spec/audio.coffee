@@ -1,22 +1,21 @@
 define [
-  'lute'
   'audio'
-], (Lute) ->
+], (Audio) ->
 
 
   describe 'Lute.Audio', ->
 
 
     beforeEach ->
-      Lute.Audio.instance = null
-      @audio = Lute.Audio.getInstance()
+      Audio.instance = null
+      @audio = Audio.getInstance()
 
 
     it 'generates a singleton', ->
-      Lute.Audio.instance = null
-      audio = Lute.Audio.getInstance()
-      expect(audio instanceof Lute.Audio).toBe(true)
-      expect(Lute.Audio.getInstance()).toBe(audio)
+      Audio.instance = null
+      audio = Audio.getInstance()
+      expect(audio instanceof Audio).toBe(true)
+      expect(Audio.getInstance()).toBe(audio)
       expect(@audio).not.toBe(audio)
 
 
@@ -62,11 +61,3 @@ define [
       expect(@audio.mergerNode.connectedBy.length).toBe(1)
       @audio.play(440)
       expect(@audio.mergerNode.connectedBy.length).toBe(2)
-
-
-    it 'converts indexes into frequencies', ->
-      expect(Lute.Audio.getFrequency(12)).toBeCloseTo(880)
-      expect(Lute.Audio.getFrequency(1)).toBeCloseTo(466.164)
-      expect(Lute.Audio.getFrequency(0)).toBeCloseTo(440)
-      expect(Lute.Audio.getFrequency(-1)).toBeCloseTo(415.305)
-      expect(Lute.Audio.getFrequency(-12)).toBeCloseTo(220)

@@ -1,4 +1,6 @@
-define [], ->
+define [
+  'jquery'
+], ($) ->
 
 
   # Underscore stub for template rendering.
@@ -27,3 +29,6 @@ define [], ->
   Lute =
     View: {}
     Model: {}
+
+    defaults: (obj1, obj2) ->
+      $.extend(true, {}, obj2, obj1)

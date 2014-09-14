@@ -1,17 +1,17 @@
 define [
-  'lute'
+  'jquery'
   'audio'
   'view/sound-control'
-], (Lute) ->
+], ($, Audio, SoundControl) ->
 
 
   describe 'Lute.View.SoundControl', ->
 
 
     beforeEach ->
-      Lute.Audio.instance = null
-      @audio = Lute.Audio.getInstance()
-      @control = new Lute.View.SoundControl()
+      Audio.instance = null
+      @audio = Audio.getInstance()
+      @control = new SoundControl()
 
 
     it 'has DOM elements', ->

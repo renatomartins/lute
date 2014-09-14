@@ -31,8 +31,8 @@ define [
 
     configDom: ->
       @$volume.val(@audio.volume)
-      @$volume.on('change', => @onVolumeChange())
-      @$mute.on('click', => @onMuteClick())
+      @$volume.off().on('change', => @onVolumeChange())
+      @$mute.off().on('click', => @onMuteClick())
 
 
     onVolumeChange: ->

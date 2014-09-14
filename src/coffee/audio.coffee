@@ -71,9 +71,3 @@ define [
       @isMuted = false
       @setVolume(volume)
       @trigger('unmuted', volume)
-
-
-    # Get the frequency in Hz for given index (0 is 440Hz).
-    # https://en.wikipedia.org/wiki/Piano_key_frequencies
-    @getFrequency: (index) ->
-      Math.pow(2, index / 12) * 440
