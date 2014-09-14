@@ -1,4 +1,4 @@
-# Lute
+# Lute [![Build Status](https://travis-ci.org/renatomartins/lute.svg)](https://travis-ci.org/renatomartins/lute)
 
 Tune your string instruments (guitar, bass, ukulele, rebecha, etc).
 

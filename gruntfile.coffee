@@ -100,6 +100,9 @@ module.exports = (grunt) ->
     'jst'
     'clean:dist'
     'requirejs'
-    'jasmine'
     'copy:html'
+  ])
+  grunt.registerTask('test', [
+    'default'
+    'jasmine'
   ])
