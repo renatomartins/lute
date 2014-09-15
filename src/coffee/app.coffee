@@ -7,5 +7,6 @@ define [
 
 
   $ ->
-    new Lute.View.SoundControl()
-    new Lute.View.Player()
+    soundControl = new Lute.View.SoundControl()
+    player = new Lute.View.Player()
+    $('body').append(soundControl.$el, player.$el)

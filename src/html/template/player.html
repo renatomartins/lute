@@ -1,0 +1,8 @@
+<select class="js-tunings">
+  <% Object.keys(tunings).forEach(function (tuning) { %>
+  <option value="<%= tuning %>">
+    <%= tunings[tuning].name %>
+  </option>
+  <% }) %>
+</select>
+<div class="js-pitches"></div>

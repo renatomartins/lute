@@ -21,7 +21,6 @@ define [
 
     render: ->
       @$el.html(template())
-      $('body').append(@$el)
 
       @$volume = @$el.find('#volume')
       @$mute = @$el.find('#mute')

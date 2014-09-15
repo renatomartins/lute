@@ -56,12 +56,10 @@ module.exports = (grunt) ->
       options:
         namespace: false
         amd: true
-        templateSettings:
-          interpolate: /\{\{(.+?)\}\}/g
       compile:
         expand: true
         cwd: 'src/html/template'
-        src: ['**/*.mustache']
+        src: ['**/*.html']
         dest: 'build/src/template'
         ext: '.js'
 
