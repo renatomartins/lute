@@ -1,10 +1,15 @@
 # Lute [![Build Status](https://travis-ci.org/renatomartins/lute.svg)](https://travis-ci.org/renatomartins/lute)
 
-Tune your string instruments (guitar, bass, ukulele, rebecha, etc).
+A simple tuner for string instruments (guitar, bass, ukulele, rebecha, etc).
 
-## TODO:
 
-  * choose playing sound
-  * for guitar by default, each string pitch can be changed by half-steps
-  * load tuning configurations (standard guitar, drop d, standard bass, etc.)
-  * capture sound from mic and compare frequencies
+### License
+
+:globe_with_meridians: Public Domain
+
+
+### TODO:
+
+  * be able to create new tunings and save them for later
+  * configure the sound (duration, volume and timbre)
+  * capture sound from mic and compare it to the expected pitches
